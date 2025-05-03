@@ -30,6 +30,12 @@
 
   services.flatpak.enable = true;
 
+  hardware.uinput.enable = true;
+  services.kanata = {
+    enable = true;
+    keyboards.default.configFile = ./kanata.kbd;
+  };
+
   programs.zsh.enable = true;
   users.users.rezzubs = {
     isNormalUser = true;
