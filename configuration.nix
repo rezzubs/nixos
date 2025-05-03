@@ -39,6 +39,8 @@
 
   programs.starship.enable = true;
 
+  zramSwap.enable = true;
+
   programs.zsh.enable = true;
   users.users.rezzubs = {
     isNormalUser = true;
@@ -48,11 +50,11 @@
 
   environment.systemPackages = with pkgs;
     [
-      hello
       alacritty
       git
       gnome-software
       gnome-tweaks
+      htop
       lazygit
       nautilus
       neovim
