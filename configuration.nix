@@ -38,6 +38,8 @@
 
   programs.neovim.defaultEditor = true;
 
+  programs.starship.enable = true;
+
   programs.zsh.enable = true;
   users.users.rezzubs = {
     isNormalUser = true;
@@ -52,6 +54,7 @@
       git
       gnome-software
       gnome-tweaks
+      lazygit
       nautilus
       neovim
       stow
