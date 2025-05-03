@@ -36,6 +36,8 @@
     keyboards.default.configFile = ./kanata.kbd;
   };
 
+  programs.neovim.defaultEditor = true;
+
   programs.zsh.enable = true;
   users.users.rezzubs = {
     isNormalUser = true;
