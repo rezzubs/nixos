@@ -44,8 +44,10 @@
       git
       gnome-software
       gnome-tweaks
+      nautilus
       neovim
       stow
+      wl-clipboard
       zellij
     ]
     ++ (with pkgs.gnomeExtensions; [
