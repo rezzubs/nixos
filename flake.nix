@@ -19,6 +19,12 @@
           ./main/hardware-configuration.nix
         ];
       };
+      work-laptop = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./configuration.nix
+          ./work-laptop/hardware-configuration.nix
+        ];
+      };
     };
 
     devShells.${system}.default = pkgs.mkShell {
