@@ -49,6 +49,8 @@
       enableSSHSupport = true;
     };
 
+    nano.enable = false;
+
     zsh.enable = true;
 
     starship.enable = true;
