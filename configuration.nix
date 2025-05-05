@@ -2,9 +2,14 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
-}: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+}:
+{
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   security.sudo.enable = false;
   security.doas.enable = true;
@@ -35,8 +40,6 @@
     keyboards.default.configFile = ./kanata.kbd;
   };
 
-  programs.neovim.defaultEditor = true;
-
   programs.starship.enable = true;
 
   zramSwap.enable = true;
@@ -44,11 +47,12 @@
   programs.zsh.enable = true;
   users.users.rezzubs = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
   };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
       alacritty
       git
@@ -57,7 +61,6 @@
       htop
       lazygit
       nautilus
-      neovim
       stow
       wl-clipboard
       zellij
@@ -68,6 +71,9 @@
       dash-to-dock
       focus-changer
       rounded-window-corners-reborn
+    ])
+    ++ (with pkgs-unstable; [
+      neovim
     ]);
 
   programs.gnupg.agent = {
