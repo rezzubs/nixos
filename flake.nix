@@ -27,6 +27,7 @@
           modules = [
             ./configuration.nix
             ./main/hardware-configuration.nix
+            ./main/custom.nix
           ];
         };
 

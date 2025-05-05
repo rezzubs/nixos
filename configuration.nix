@@ -1,3 +1,4 @@
+# System agnostic configuration
 {
   pkgs,
   pkgs-unstable,
