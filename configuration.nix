@@ -62,7 +62,6 @@
   };
 
   services = {
-
     flatpak.enable = true;
 
     gnome.core-utilities.enable = false;
@@ -84,12 +83,12 @@
     printing.enable = true;
 
     xserver = {
+      enable = true;
       desktopManager.gnome = {
         enable = true;
       };
       displayManager.gdm.enable = true;
     };
-
   };
 
   time.timeZone = "Europe/Tallinn";
