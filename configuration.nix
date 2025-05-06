@@ -1,54 +1,16 @@
 {
-  config,
-  lib,
   pkgs,
+  pkgs-unstable,
   ...
-}: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  security.sudo.enable = false;
-  security.doas.enable = true;
-
+}:
+{
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
 
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "Europe/Tallinn";
-
-  services.printing.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  services.libinput.enable = true;
-
-  services.flatpak.enable = true;
-
-  hardware.uinput.enable = true;
-  services.kanata = {
-    enable = true;
-    keyboards.default.configFile = ./kanata.kbd;
-  };
-
-  programs.neovim.defaultEditor = true;
-
-  programs.starship.enable = true;
-
-  zramSwap.enable = true;
-
-  programs.zsh.enable = true;
-  users.users.rezzubs = {
-    isNormalUser = true;
-    extraGroups = ["wheel"];
-    shell = pkgs.zsh;
-  };
-
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
       alacritty
       git
@@ -57,7 +19,6 @@
       htop
       lazygit
       nautilus
-      neovim
       stow
       wl-clipboard
       zellij
@@ -68,23 +29,77 @@
       dash-to-dock
       focus-changer
       rounded-window-corners-reborn
+    ])
+    ++ (with pkgs-unstable; [
+      neovim
     ]);
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  hardware.uinput.enable = true;
 
-  services.openssh.enable = true;
+  networking.networkmanager.enable = true;
 
-  services.xserver = {
-    desktopManager.gnome = {
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  programs = {
+    gnupg.agent = {
       enable = true;
+      enableSSHSupport = true;
     };
 
-    displayManager.gdm.enable = true;
+    nano.enable = false;
+
+    zsh.enable = true;
+
+    starship.enable = true;
   };
-  services.gnome.core-utilities.enable = false;
+
+  security = {
+    sudo.enable = false;
+    doas.enable = true;
+  };
+
+  services = {
+    flatpak.enable = true;
+
+    gnome.core-utilities.enable = false;
+
+    kanata = {
+      enable = true;
+      keyboards.default.configFile = ./kanata.kbd;
+    };
+
+    libinput.enable = true;
+
+    openssh.enable = true;
+
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    printing.enable = true;
+
+    xserver = {
+      enable = true;
+      desktopManager.gnome = {
+        enable = true;
+      };
+      displayManager.gdm.enable = true;
+    };
+  };
+
+  time.timeZone = "Europe/Tallinn";
+
+  users.users.rezzubs = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
+  };
+
+  zramSwap.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

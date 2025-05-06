@@ -2,21 +2,39 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-  }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-      main = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-          ./main/hardware-configuration.nix
+  outputs =
+    {
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        main = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit pkgs-unstable;
+          };
+
+          modules = [
+            ./configuration.nix
+            ./main/hardware-configuration.nix
+          ];
+        };
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nixd
+          nixfmt-rfc-style
         ];
       };
       work-laptop = nixpkgs.lib.nixosSystem {
@@ -26,12 +44,4 @@
         ];
       };
     };
-
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        alejandra
-        nil
-      ];
-    };
-  };
 }
