@@ -27,6 +27,7 @@
     ++ (with pkgs.gnomeExtensions; [
       alphabetical-app-grid
       bing-wallpaper-changer
+      blur-my-shell
       dash-to-dock
       focus-changer
       rounded-window-corners-reborn
