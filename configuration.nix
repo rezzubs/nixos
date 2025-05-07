@@ -36,6 +36,7 @@
     ])
     ++ (with pkgs-unstable; [
       neovim
+      nerd-fonts.iosevka
     ]);
 
   hardware.uinput.enable = true;
