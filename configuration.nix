@@ -23,6 +23,8 @@
       stow
       wl-clipboard
       zellij
+      fd
+      ripgrep
     ]
     ++ (with pkgs.gnomeExtensions; [
       alphabetical-app-grid
