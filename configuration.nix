@@ -20,6 +20,7 @@
       with pkgs;
       [
         alacritty
+        gcc
         git
         gnome-software
         gnome-tweaks
