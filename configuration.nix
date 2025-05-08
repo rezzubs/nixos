@@ -10,34 +10,40 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      alacritty
-      git
-      gnome-software
-      gnome-tweaks
-      htop
-      lazygit
-      nautilus
-      stow
-      wl-clipboard
-      zellij
-      fd
-      ripgrep
-    ]
-    ++ (with pkgs.gnomeExtensions; [
-      alphabetical-app-grid
-      bing-wallpaper-changer
-      blur-my-shell
-      dash-to-dock
-      focus-changer
-      rounded-window-corners-reborn
-    ])
-    ++ (with pkgs-unstable; [
-      neovim
-      nerd-fonts.iosevka
-    ]);
+  environment = {
+    sessionVariables = {
+      EDITOR = "neovim";
+    };
+
+    systemPackages =
+      with pkgs;
+      [
+        alacritty
+        git
+        gnome-software
+        gnome-tweaks
+        htop
+        lazygit
+        nautilus
+        stow
+        wl-clipboard
+        zellij
+        fd
+        ripgrep
+      ]
+      ++ (with pkgs.gnomeExtensions; [
+        alphabetical-app-grid
+        bing-wallpaper-changer
+        blur-my-shell
+        dash-to-dock
+        focus-changer
+        rounded-window-corners-reborn
+      ])
+      ++ (with pkgs-unstable; [
+        neovim
+        nerd-fonts.iosevka
+      ]);
+  };
 
   hardware.uinput.enable = true;
 
