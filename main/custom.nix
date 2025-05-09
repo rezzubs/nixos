@@ -8,7 +8,6 @@
   systemd.services.gpp0-wakeup = {
     description = "Enable wake from GPP0 at boot";
     wantedBy = [ "multi-user.target" ];
-    after = [ "local-fs.target" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
