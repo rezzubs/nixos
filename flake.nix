@@ -49,11 +49,5 @@
           nixfmt-rfc-style
         ];
       };
-      work-laptop = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-          ./work-laptop/hardware-configuration.nix
-        ];
-      };
     };
 }
