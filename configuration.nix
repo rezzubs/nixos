@@ -75,6 +75,14 @@
   };
 
   services = {
+    # NOTE: Printer discovery
+    # https://nixos.wiki/wiki/Printing
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
     flatpak.enable = true;
 
     gnome.core-utilities.enable = false;
