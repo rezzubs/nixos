@@ -20,7 +20,7 @@
       with pkgs;
       [
         alacritty
-        gcc
+        distrobox
         git
         gnome-software
         gnome-tweaks
@@ -110,6 +110,11 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
   };
 
   zramSwap.enable = true;
