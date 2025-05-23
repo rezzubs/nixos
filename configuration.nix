@@ -6,7 +6,6 @@
 }:
 {
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
@@ -21,17 +20,19 @@
       [
         alacritty
         distrobox
+        fd
         git
         gnome-software
         gnome-tweaks
         htop
         lazygit
         nautilus
+        neovim
+        nerd-fonts.iosevka
+        ripgrep
         stow
         wl-clipboard
         zellij
-        fd
-        ripgrep
       ]
       ++ (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
@@ -40,10 +41,6 @@
         dash-to-dock
         focus-changer
         rounded-window-corners-reborn
-      ])
-      ++ (with pkgs-unstable; [
-        neovim
-        nerd-fonts.iosevka
       ]);
   };
 
@@ -98,7 +95,7 @@
 
     flatpak.enable = true;
 
-    gnome.core-utilities.enable = false;
+    gnome.core-apps.enable = false;
 
     kanata = {
       enable = true;
