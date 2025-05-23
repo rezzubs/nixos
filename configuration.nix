@@ -21,6 +21,7 @@
         alacritty
         distrobox
         fd
+        fzf
         git
         gnome-software
         gnome-tweaks
