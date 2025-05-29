@@ -1,7 +1,6 @@
 # System agnostic configuration
 {
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
@@ -18,13 +17,10 @@
     systemPackages =
       with pkgs;
       [
-        alacritty
         distrobox
         fd
         fzf
         git
-        gnome-software
-        gnome-tweaks
         htop
         lazygit
         nautilus
@@ -35,13 +31,8 @@
         wl-clipboard
         zellij
       ]
-      ++ (with pkgs.gnomeExtensions; [
-        alphabetical-app-grid
-        bing-wallpaper-changer
-        blur-my-shell
-        dash-to-dock
-        focus-changer
-        rounded-window-corners-reborn
+      ++ (with pkgs.kdePackages; [
+        discover
       ]);
   };
 
@@ -73,6 +64,8 @@
       enableSSHSupport = true;
     };
 
+    kdeconnect.enable = true;
+
     nano.enable = false;
 
     zsh.enable = true;
@@ -96,6 +89,8 @@
 
     flatpak.enable = true;
 
+    fprintd.enable = true;
+
     gnome.core-apps.enable = false;
 
     kanata = {
@@ -110,25 +105,38 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      jack.enable = true;
     };
 
     printing.enable = true;
 
-    xserver = {
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"
+    '';
+
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm = {
       enable = true;
-      desktopManager.gnome = {
-        enable = true;
-      };
-      displayManager.gdm.enable = true;
+      wayland.enable = true;
     };
+  };
+
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
   };
 
   time.timeZone = "Europe/Tallinn";
 
-  users.users.rezzubs = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
+  users = {
+    defaultUserShell = pkgs.zsh;
+
+    users.rezzubs = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
   };
 
   virtualisation.podman = {
