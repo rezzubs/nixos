@@ -68,9 +68,11 @@
 
     nano.enable = false;
 
-    zsh.enable = true;
-
     starship.enable = true;
+
+    thunderbird.enable = true;
+
+    zsh.enable = true;
   };
 
   security = {
