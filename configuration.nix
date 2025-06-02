@@ -36,7 +36,15 @@
       ]);
   };
 
-  hardware.uinput.enable = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
+    uinput.enable = true;
+  };
+
 
   networking.networkmanager.enable = true;
 
