@@ -39,6 +39,7 @@
           modules = [
             ./configuration.nix
             ./work-laptop/hardware-configuration.nix
+            ./work-laptop/custom.nix
           ];
         };
       };

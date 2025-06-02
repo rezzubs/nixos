@@ -45,7 +45,6 @@
     uinput.enable = true;
   };
 
-
   networking.networkmanager.enable = true;
 
   nix = {
@@ -99,8 +98,6 @@
 
     flatpak.enable = true;
 
-    fprintd.enable = true;
-
     gnome.core-apps.enable = false;
 
     kanata = {
@@ -131,11 +128,6 @@
       enable = true;
       wayland.enable = true;
     };
-  };
-
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
   };
 
   time.timeZone = "Europe/Tallinn";
