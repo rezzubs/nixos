@@ -14,9 +14,15 @@
     homeDirectory = "/home/rezzubs";
 
     packages = with pkgs; [
+      dust
       fastfetch
-      wl-clipboard
       htop
+      hyperfine
+      tealdeer
+      tokei
+      tokei
+      tree
+      wl-clipboard
     ];
 
     sessionVariables = {};
