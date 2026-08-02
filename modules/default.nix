@@ -12,6 +12,7 @@
     ./steam.nix
     ./swap.nix
     ./users.nix
+    ./wakeup-fix.nix
     ./wayland.nix
   ];
 

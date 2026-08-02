@@ -29,5 +29,8 @@
   networking.hostName = "desktop";
   hardware.bluetooth.enable = true;
 
-  custom.steam.enable = true;
+  custom = {
+    steam.enable = true;
+    wakeup-fix.enable = true;
+  };
 }
