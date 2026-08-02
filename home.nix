@@ -85,6 +85,8 @@
     zed-editor.enable = true;
   };
 
+  services.home-manager.autoExpire.enable = true;
+
   home.pointerCursor = {
     enable = true;
     name = "Bibata-Modern-Ice";
