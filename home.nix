@@ -30,8 +30,6 @@
   programs = {
     atuin.enable = true;
 
-    discord.enable = true;
-
     fish.enable = true;
 
     ghostty = {
