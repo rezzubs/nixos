@@ -43,6 +43,8 @@
       };
     };
 
+    lutris.enable = true;
+
     git.enable = true;
 
     helix = {
