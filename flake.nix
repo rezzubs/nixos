@@ -26,15 +26,14 @@
       modules = [./hosts/desktop/configuration.nix];
     };
 
-    homeConfigurations.rezzubs = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."rezzubs@desktop" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       extraSpecialArgs = {
         inherit inputs;
-        inherit nixpkgs-unstable;
       };
 
-      modules = [./home.nix];
+      modules = [./hosts/desktop/home.nix];
     };
 
     formatter.${system} = pkgs.alejandra;
