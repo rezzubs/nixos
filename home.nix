@@ -3,8 +3,15 @@
   inputs,
   lib,
   pkgs,
+  nixpkgs-unstable,
   ...
-}: {
+}: let
+  pkgs-unstable = import nixpkgs-unstable {
+    inherit (pkgs) system;
+    config.allowUnfreePredicate = pkg:
+      lib.getName pkg == "claude-code";
+  };
+in {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -13,17 +20,21 @@
     username = "rezzubs";
     homeDirectory = "/home/rezzubs";
 
-    packages = with pkgs; [
-      dust
-      fastfetch
-      htop
-      hyperfine
-      tealdeer
-      tokei
-      tokei
-      tree
-      wl-clipboard
-    ];
+    packages =
+      (with pkgs; [
+        dust
+        fastfetch
+        htop
+        hyperfine
+        tealdeer
+        tokei
+        tokei
+        tree
+        wl-clipboard
+      ])
+      ++ (with pkgs-unstable; [
+        claude-code
+      ]);
 
     sessionVariables = {};
   };
@@ -98,12 +109,6 @@
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
   };
-
-  # https://nixos.org/manual/nixpkgs/stable/#sec-allow-unfree
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-    ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
