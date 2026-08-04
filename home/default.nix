@@ -6,6 +6,7 @@
     ./niri.nix
     ./noctalia.nix
     ./packages.nix
+    ./rounded-corners.nix
     ./terminal.nix
     ./theming.nix
     ./vcs.nix
@@ -17,6 +18,7 @@
     niri.enable = true;
     noctalia.enable = true;
     packages.enable = true;
+    roundedCorners.enable = true;
     terminal.enable = true;
     theming.enable = true;
     vcs.enable = true;

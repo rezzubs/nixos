@@ -78,7 +78,28 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "noctalia": "noctalia"
+        "noctalia": "noctalia",
+        "rounded-corners": "rounded-corners"
+      }
+    },
+    "rounded-corners": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785859373,
+        "narHash": "sha256-J+BWzu1s215W3qYOpQFz8eTeO7YbCZSodcwmyR/nP1g=",
+        "owner": "rezzubs",
+        "repo": "wayland-rounded-corners",
+        "rev": "fb5873243f3c74a10bd4d94b29d43f1bcea7a408",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rezzubs",
+        "repo": "wayland-rounded-corners",
+        "type": "github"
       }
     }
   },
