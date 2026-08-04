@@ -22,19 +22,38 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-      modules = [./hosts/tower/configuration.nix];
-    };
-
-    homeConfigurations."rezzubs@tower" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-
-      extraSpecialArgs = {
-        inherit inputs;
+    nixosConfigurations = {
+      tower = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/tower/configuration.nix];
       };
 
-      modules = [./hosts/tower/home.nix];
+      elitebook = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/elitebook/configuration.nix];
+      };
     };
+
+    homeConfigurations = {
+      "rezzubs@tower" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [./hosts/tower/home.nix];
+      };
+
+      "rezzubs@elitebook" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [./hosts/elitebook/home.nix];
+      };
+    };
+
 
     formatter.${system} = pkgs.alejandra;
   };
