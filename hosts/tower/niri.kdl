@@ -1,0 +1,8 @@
+output "LG Electronics LG ULTRAWIDE 504NTPCDF824" {
+    position x=0 y=0
+}
+
+output "PNP(BNQ) BenQ GW2470 C6G01568019" {
+    position x=-1080 y=-240
+    transform "90"
+}

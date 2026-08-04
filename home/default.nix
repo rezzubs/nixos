@@ -3,6 +3,7 @@
     ./claude.nix
     ./editor.nix
     ./gaming.nix
+    ./niri.nix
     ./noctalia.nix
     ./packages.nix
     ./terminal.nix
@@ -13,6 +14,7 @@
   custom = lib.mkDefault {
     claude.enable = true;
     editor.enable = true;
+    niri.enable = true;
     noctalia.enable = true;
     packages.enable = true;
     terminal.enable = true;
