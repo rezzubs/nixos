@@ -27,16 +27,17 @@ input {
 }
 
 layout {
-    gaps 12
     center-focused-column "never"
+    always-center-single-column
+
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
     }
-
     default-column-width { proportion 0.5; }
 
+    gaps 12
     focus-ring {
         width 2
         active-gradient from="#e5989b" to="#e5989b" angle=45  in="oklch longer hue" relative-to="workspace-view"
