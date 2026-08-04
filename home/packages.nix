@@ -12,6 +12,7 @@
       fastfetch
       htop
       hyperfine
+      just
       tealdeer
       tokei
       tree
