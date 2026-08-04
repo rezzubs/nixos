@@ -79,6 +79,12 @@
 
         location.address = "Tallinn";
 
+        nightlight = {
+          enabled = true;
+          temperature_day = 6500;
+          temperature_night = 4500;
+        };
+
         shell = {
           launch_apps_as_systemd_services = true;
           panel.open_near_click_control_center = true;
