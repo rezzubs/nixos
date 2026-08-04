@@ -26,7 +26,7 @@
     };
   };
 
-  networking.hostName = "desktop";
+  networking.hostName = "tower";
   hardware.bluetooth.enable = true;
 
   custom = {

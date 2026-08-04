@@ -22,18 +22,18 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      modules = [./hosts/desktop/configuration.nix];
+    nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
+      modules = [./hosts/tower/configuration.nix];
     };
 
-    homeConfigurations."rezzubs@desktop" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."rezzubs@tower" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       extraSpecialArgs = {
         inherit inputs;
       };
 
-      modules = [./hosts/desktop/home.nix];
+      modules = [./hosts/tower/home.nix];
     };
 
     formatter.${system} = pkgs.alejandra;
