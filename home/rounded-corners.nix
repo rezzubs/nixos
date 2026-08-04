@@ -11,7 +11,7 @@
   config = lib.mkIf config.custom.roundedCorners.enable {
     services.rounded-corners = {
       enable = true;
-      radius = 24;
+      radius = 18;
     };
   };
 }

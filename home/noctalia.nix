@@ -30,7 +30,7 @@
           margin_ends = 0;
           padding = 12;
           position = "left";
-          radius = 24;
+          radius = 18;
           radius_bottom_left = 0;
           radius_top_left = 0;
           start = [
