@@ -9,7 +9,14 @@
     programs = {
       atuin.enable = true;
 
-      fish.enable = true;
+      fish = {
+        enable = true;
+        functions = {
+          fish_greeting = ''
+            uptime
+          '';
+        };
+      };
 
       ghostty = {
         enable = true;
