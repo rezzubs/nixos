@@ -10,6 +10,7 @@
     home.packages = with pkgs; [
       dust
       fastfetch
+      file
       htop
       hyperfine
       just
