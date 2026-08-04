@@ -54,7 +54,6 @@
       };
     };
 
-
     formatter.${system} = pkgs.alejandra;
   };
 }

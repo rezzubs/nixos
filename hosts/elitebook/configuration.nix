@@ -9,12 +9,6 @@
     ../../modules
   ];
 
-  fileSystems = {
-    "/".options = ["compress=zstd"];
-    "/home".options = ["compress=zstd"];
-    "/nix/store".options = ["compress=zstd" "noatime"];
-  };
-
   networking.hostName = "elitebook";
   hardware.bluetooth.enable = true;
 

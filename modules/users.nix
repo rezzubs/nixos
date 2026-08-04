@@ -7,7 +7,7 @@
 
   config = lib.mkIf config.custom.users.enable {
     users.users.rezzubs = {
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "networkmanager"];
       isNormalUser = true;
     };
   };
