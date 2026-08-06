@@ -7,7 +7,13 @@
 
   config = lib.mkIf config.custom.vcs.enable {
     programs = {
-      git.enable = true;
+      git = {
+        enable = true;
+        ignores = [
+          ".claude"
+          "CLAUDE.md"
+        ];
+      };
 
       jujutsu = {
         enable = true;
