@@ -13,7 +13,7 @@
         enable = true;
         settings.user = {
           email = "marten.roots@gmail.com";
-          name = "Marten Roots;";
+          name = "Marten Roots";
         };
       };
     };
