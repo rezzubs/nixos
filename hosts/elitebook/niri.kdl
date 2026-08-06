@@ -1,0 +1,7 @@
+output "Chimei Innolux Corporation 0x1464 Unknown" {
+    position x=0 y=0
+}
+
+output "LG Electronics LG ULTRAWIDE 504NTPCDF824" {
+    position x=-800 y=-1440
+}
