@@ -37,5 +37,7 @@
     openssh.enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   time.timeZone = lib.mkDefault "Europe/Tallinn";
 }
