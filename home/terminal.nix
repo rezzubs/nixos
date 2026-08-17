@@ -25,8 +25,6 @@
           theme = "Catppuccin Mocha";
           window-theme = "ghostty"; # use `theme` also for tab bars.
           window-decoration = "none";
-          window-padding-x = 4;
-          window-padding-y = 4;
         };
       };
 
