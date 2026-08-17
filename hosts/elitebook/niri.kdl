@@ -5,3 +5,7 @@ output "Chimei Innolux Corporation 0x1464 Unknown" {
 output "LG Electronics LG ULTRAWIDE 504NTPCDF824" {
     position x=-800 y=-1440
 }
+
+output "Acer Technologies XZ270U P 13260320C3W01" {
+    position x=-320 y=-1440
+}
