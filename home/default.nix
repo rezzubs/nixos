@@ -5,6 +5,8 @@
     ./gaming.nix
     ./niri.nix
     ./noctalia.nix
+    ./nix.nix
+    ./obsidian.nix
     ./packages.nix
     ./rounded-corners.nix
     ./terminal.nix
@@ -17,6 +19,7 @@
     editor.enable = true;
     niri.enable = true;
     noctalia.enable = true;
+    obsidian.enable = true;
     packages.enable = true;
     roundedCorners.enable = true;
     terminal.enable = true;
