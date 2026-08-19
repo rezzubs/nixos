@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   options.custom.packages.enable = lib.mkEnableOption "common CLI packages";
@@ -13,6 +14,7 @@
       file
       htop
       hyperfine
+      inputs.herdr.packages.${pkgs.system}.default
       just
       tealdeer
       tokei
