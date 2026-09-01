@@ -14,10 +14,14 @@
         "steam-run"
       ];
 
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
+    programs = {
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+      };
+
+      gamescope.enable = true;
     };
   };
 }
