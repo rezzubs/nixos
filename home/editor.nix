@@ -20,6 +20,8 @@
             insert = "bar";
             normal = "block";
           };
+
+          indent-guides.render = true;
         };
       };
 
