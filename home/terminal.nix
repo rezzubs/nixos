@@ -9,6 +9,11 @@
     programs = {
       atuin.enable = true;
 
+      bat.enable = true;
+
+      fzf.enable = true;
+      
+
       fish = {
         enable = true;
         functions = {
@@ -31,6 +36,8 @@
       starship.enable = true;
 
       yazi.enable = true;
+
+      zoxide.enable = true;
     };
   };
 }
