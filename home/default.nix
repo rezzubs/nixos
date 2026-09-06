@@ -10,20 +10,15 @@
     ./packages.nix
     ./rounded-corners.nix
     ./terminal.nix
-    ./theming.nix
     ./vcs.nix
   ];
 
   custom = lib.mkDefault {
     claude.enable = true;
     editor.enable = true;
-    niri.enable = true;
-    noctalia.enable = true;
     obsidian.enable = true;
     packages.enable = true;
-    roundedCorners.enable = true;
     terminal.enable = true;
-    theming.enable = true;
     vcs.enable = true;
   };
 

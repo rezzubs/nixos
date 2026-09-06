@@ -1,12 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   imports = [
     ./bootloader.nix
     ./editor.nix
+    ./kde.nix
     ./niri.nix
     ./nix.nix
     ./steam.nix
@@ -19,7 +19,7 @@
   custom = lib.mkDefault {
     bootLoader.enable = true;
     editor.enable = true;
-    niri.enable = true;
+    kde.enable = true;
     nix.enable = true;
     swap.enable = true;
     users.enable = true;

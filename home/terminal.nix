@@ -24,7 +24,7 @@
           command = "fish";
           theme = "Catppuccin Mocha";
           window-theme = "ghostty"; # use `theme` also for tab bars.
-          window-decoration = "none";
+          window-decoration = "auto";
         };
       };
 

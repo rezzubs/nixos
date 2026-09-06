@@ -7,11 +7,7 @@
   imports = [inputs.noctalia.homeModules.default];
 
   options.custom.noctalia = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "use the noctalia shell";
-    };
+    enable = lib.mkEnableOption "use the noctalia shell";
   };
 
   config = lib.mkIf config.custom.noctalia.enable {
