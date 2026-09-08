@@ -13,6 +13,8 @@
       settings = {
         theme = "catppuccin_mocha";
 
+        keys.normal.space.t = ":toggle soft-wrap.enable";
+
         editor = {
           line-number = "relative";
 
