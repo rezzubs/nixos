@@ -12,7 +12,6 @@
       bat.enable = true;
 
       fzf.enable = true;
-      
 
       fish = {
         enable = true;

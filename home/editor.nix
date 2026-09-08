@@ -29,6 +29,16 @@
         language-server.rust-analyzer.config = {
           check.command = "clippy";
         };
+
+        # Generate an auto-format block for all languages listed below.
+        language =
+          map (name: {
+            inherit name;
+            auto-format = true;
+          }) [
+            "python"
+            "rust"
+          ];
       };
     };
   };
