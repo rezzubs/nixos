@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  ...
 }: {
   imports = [
     ./universal.nix
