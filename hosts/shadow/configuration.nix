@@ -33,11 +33,10 @@
   hardware = {
     # Use the open source kernel modules
     nvidia.open = true;
-  
+
     # GPU access in distrobox/containers.
     nvidia-container-toolkit.enable = true;
   };
-
 
   networking.hostName = "shadow";
 
