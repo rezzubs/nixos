@@ -36,6 +36,8 @@ in {
       "borgmatic/borgbase_encryption" = {};
       # The borgbase repository used for minecraft
       "borgmatic/minecraft_repo" = {};
+      # The borgbase repository used for immich
+      "borgmatic/immich_repo" = {};
       # The ssh private key used for pushing to borgbase
       "borgmatic/ssh_key" = {};
 
@@ -51,6 +53,7 @@ in {
         mode = "0400";
         content = ''
           MINECRAFT_BORGBASE=${config.sops.placeholder."borgmatic/minecraft_repo"}
+          IMMICH_BORGBASE=${config.sops.placeholder."borgmatic/immich_repo"}
           BORGBASE_ENCRYPTION=${config.sops.placeholder."borgmatic/borgbase_encryption"}
         '';
       };
@@ -72,43 +75,69 @@ in {
   };
 
   services = {
-    borgmatic = {
+    borgmatic = let
+      commonOptions = {
+        compression = "zstd";
+        recompress = "if-different";
+
+        encryption_passphrase = "\${BORGBASE_ENCRYPTION}";
+
+        keep_daily = 7;
+        keep_monthly = 6;
+        keep_weekly = 4;
+        keep_yearly = 0;
+
+        ssh_command = "ssh -i ${config.sops.secrets."borgmatic/ssh_key".path}";
+      };
+    in {
       enable = true;
       configurations = {
-        minecraft = {
-          source_directories = ["/mnt/data/minecraft"];
-          repositories = [
-            {
-              path = "\${MINECRAFT_BORGBASE}";
-              label = "minecraft-borgbase";
-            }
-          ];
-          encryption_passphrase = "\${BORGBASE_ENCRYPTION}";
-          compression = "zstd";
-          recompress = "if-different";
-          keep_daily = 7;
-          keep_weekly = 4;
-          keep_monthly = 6;
-          keep_yearly = 0;
-          statistics = true;
-          archive_name_format = "minecraft-{now:%Y-%m-%dT%H:%M:%S}";
-          ssh_command = "ssh -i ${config.sops.secrets."borgmatic/ssh_key".path}";
-          commands = [
-            {
-              before = "repository";
-              run = [
-                "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-off"
-                "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-all flush"
-                "sleep 3"
-              ];
-            }
-            {
-              after = "repository";
-              states = ["finish" "fail"];
-              run = ["docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-on"];
-            }
-          ];
-        };
+        minecraft =
+          commonOptions
+          // {
+            source_directories = ["/mnt/data/minecraft"];
+            repositories = [
+              {
+                path = "\${MINECRAFT_BORGBASE}";
+                label = "minecraft-borgbase";
+              }
+            ];
+            archive_name_format = "minecraft-{now:%Y-%m-%dT%H:%M:%S}";
+            commands = [
+              {
+                before = "repository";
+                run = [
+                  "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-off"
+                  "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-all flush"
+                  "sleep 3"
+                ];
+              }
+              {
+                after = "repository";
+                states = ["finish" "fail"];
+                run = ["docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-on"];
+              }
+            ];
+          };
+
+        immich =
+          commonOptions
+          // {
+            source_directories = ["/mnt/data/immich"];
+            exclude_patterns = [
+              "/mnt/data/immich/thumbs"
+              "/mnt/data/immich/encoded-video"
+            ];
+
+            repositories = [
+              {
+                path = "\${IMMICH_BORGBASE}";
+                label = "immich-borgbase";
+              }
+            ];
+
+            archive_name_format = "immich-{now:%Y-%m-%dT%H:%M:%S}";
+          };
       };
     };
 
