@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   minecraftCompose = "/etc/compose/minecraft/compose.yaml";
@@ -34,10 +35,6 @@ in {
     secrets = {
       # the encryption password used for the borgbase repositories.
       "borgmatic/borgbase_encryption" = {};
-      # The borgbase repository used for minecraft
-      "borgmatic/minecraft_repo" = {};
-      # The borgbase repository used for immich
-      "borgmatic/immich_repo" = {};
       # The ssh private key used for pushing to borgbase
       "borgmatic/ssh_key" = {};
 
@@ -52,8 +49,6 @@ in {
         path = "/run/secrets-rendered/borgmatic.env";
         mode = "0400";
         content = ''
-          MINECRAFT_BORGBASE=${config.sops.placeholder."borgmatic/minecraft_repo"}
-          IMMICH_BORGBASE=${config.sops.placeholder."borgmatic/immich_repo"}
           BORGBASE_ENCRYPTION=${config.sops.placeholder."borgmatic/borgbase_encryption"}
         '';
       };
@@ -98,7 +93,7 @@ in {
             source_directories = ["/mnt/data/minecraft"];
             repositories = [
               {
-                path = "\${MINECRAFT_BORGBASE}";
+                path = "ssh://sll8t42w@sll8t42w.repo.borgbase.com/./repo";
                 label = "minecraft-borgbase";
               }
             ];
@@ -131,7 +126,7 @@ in {
 
             repositories = [
               {
-                path = "\${IMMICH_BORGBASE}";
+                path = "ssh://o4xo5zyz@o4xo5zyz.repo.borgbase.com/./repo";
                 label = "immich-borgbase";
               }
             ];
@@ -165,6 +160,9 @@ in {
   systemd.services = {
     borgmatic = {
       serviceConfig.EnvironmentFile = config.sops.templates."borgmatic.env".path;
+      # The module's unit PATH doesn't include /run/current-system/sw/bin, so
+      # the minecraft before/after hooks' `docker compose` calls can't find docker.
+      path = [pkgs.docker];
       after = ["sops-nix.service"];
       wants = ["sops-nix.service"];
     };
@@ -173,6 +171,14 @@ in {
       after = ["sops-nix.service"];
       wants = ["sops-nix.service"];
     };
+  };
+
+  # BorgBase fronts every repo with the same SSH gateway - one host key entry
+  # covers both o4xo5zyz (immich) and sll8t42w (minecraft), verified via
+  # ssh-keyscan against both subdomains (identical key on each).
+  programs.ssh.knownHosts."repo.borgbase.com" = {
+    hostNames = ["o4xo5zyz.repo.borgbase.com" "sll8t42w.repo.borgbase.com"];
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
   };
 
   virtualisation.docker.enable = true;
