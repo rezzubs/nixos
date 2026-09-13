@@ -1,0 +1,26 @@
+services:
+  sftpgo:
+    image: drakkan/sftpgo:v2.7-alpine
+    ports:
+      - 8080:8080 # Admin UI
+    environment:
+      - SFTPGO_WEBDAVD__BINDINGS__0__PORT=9090
+      - SFTPGO_WEBDAVD__BINDINGS__0__ENABLE_HTTPS=false
+      - SFTPGO_WEBDAVD__BINDINGS__0__PREFIX=/dav
+      - SFTPGO_WEBDAVD__BINDINGS__0__CLIENT_IP_PROXY_HEADER=X-Forwarded-For
+      # Docker default subnet range
+      - SFTPGO_WEBDAVD__BINDINGS__0__PROXY_ALLOWED=172.16.0.0/12
+    volumes:
+      # Stores persistent data. Will contain WebDAV users.
+      - /mnt/data/sftpgo/data:/srv/sftpgo/data
+      # Stores backups
+      - /mnt/data/sftpgo/backups:/srv/sftpgo/backups
+      # Home of the sftpgo system user.
+      - /mnt/data/sftpgo/home:/var/lib/sftpgo
+    restart: unless-stopped
+    networks:
+      - proxy
+networks:
+  proxy:
+    name: proxy
+    external: true

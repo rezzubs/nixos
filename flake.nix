@@ -18,6 +18,10 @@
       url = "github:herdrdev/herdr/v0.8.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -25,6 +29,7 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    sops-nix,
     ...
   }: let
     system = "x86_64-linux";
@@ -44,7 +49,10 @@
       };
 
       homelab = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/homelab/configuration.nix];
+        modules = [
+          ./hosts/homelab/configuration.nix
+          sops-nix.nixosModules.sops
+        ];
       };
     };
 
@@ -67,6 +75,16 @@
         };
 
         modules = [./hosts/elitebook/home.nix];
+      };
+
+      "rezzubs@homelab" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [./hosts/homelab/home.nix];
       };
     };
 

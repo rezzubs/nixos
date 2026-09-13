@@ -1,0 +1,6 @@
+creation_rules:
+  - path_regex: hosts/homelab/secrets\.yaml$
+    key_groups:
+      - age:
+          - age1449g9wamshl204wetfmwqul394qedlr30yewr9y5477efae07smq0842cz # homelab key
+          - age18uf2l29ev6xudphvr5jj5akakxflw5gdcej9t6sx6etfendqe3jsay6x5u # global key
