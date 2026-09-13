@@ -42,6 +42,10 @@
       shadow = nixpkgs.lib.nixosSystem {
         modules = [./hosts/shadow/configuration.nix];
       };
+
+      homelab = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/homelab/configuration.nix];
+      };
     };
 
     homeConfigurations = {
