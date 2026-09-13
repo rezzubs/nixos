@@ -1,4 +1,6 @@
 {...}: {
+  imports = [./universal.nix];
+
   services = {
     openssh = {
       # this is only for sshd, the client is enabled by default.
