@@ -1,5 +1,5 @@
 {...}: {
-  imports = [../../home];
+  imports = [../../home/profiles/desktop.nix];
 
   custom.gaming.enable = true;
   custom.niri.hostConfig = ./niri.kdl;

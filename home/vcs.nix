@@ -9,7 +9,7 @@
     programs = {
       git = {
         enable = true;
-        ignores = [
+        ignores = lib.optionals config.custom.claude.enable [
           ".claude"
           "CLAUDE.md"
         ];

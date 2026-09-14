@@ -1,5 +1,5 @@
 {...}: {
-  imports = [../../home];
+  imports = [../../home/profiles/desktop.nix];
 
   custom.niri.hostConfig = ./niri.kdl;
 
