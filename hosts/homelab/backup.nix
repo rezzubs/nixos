@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  minecraftCompose = "/etc/compose/minecraft/compose.yaml";
+  minecraftCompose = "${./minecraft}/compose.yaml";
 in {
   sops = {
     secrets = {
