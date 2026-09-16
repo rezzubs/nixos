@@ -23,20 +23,25 @@ convention, not by anything in this repo.
 
 ## Allocations
 
-| Port  | Service | Purpose |
-|-------|---------|---------|
-| 20000 | *(TBD)* |         |
+All allocated ports are bound to `127.0.0.1` only. Caddy is the sole intended
+entry point for these services, reverse-proxying to them by port. Docker's
+own iptables rules bypass the NixOS firewall for published ports, so without
+the `127.0.0.1` bind these would be reachable on every interface regardless of
+`networking.firewall`.
+
+| Port  | Service       | Notes  |
+|-------|---------------|--------|
+| 20000 | sftpgo        | HTTP   |
+| 20001 | sftpgo        | WebDAV |
+| 20010 | actual-budget | HTTP   |
+| 20020 | immich        | HTTP   |
 
 ## Non-conformant
 
 Ports of services which don't map to the scheme above.
 
-| Port  | Service               | Notes                |
-|-------|-----------------------|----------------------|
-| 80    | caddy                 | HTTP                 |
-| 443   | caddy                 | HTTPS/HTTP3          |
-| 2283  | immich (immich_server)|                      |
-| 5006  | actual-budget         |                      |
-| 8080  | sftpgo                | admin UI             |
-| 9090  | sftpgo                | WebDAV               |
-| 25565 | minecraft             | conventional MC port |
+| Port  | Service   | Notes                |
+|-------|-----------|----------------------|
+| 80    | caddy     | HTTP                 |
+| 443   | caddy     | HTTPS/HTTP3          |
+| 25565 | minecraft | conventional MC port |

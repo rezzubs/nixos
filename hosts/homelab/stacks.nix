@@ -17,27 +17,21 @@
     dir,
     # Sops-rendered dotenv file, if this stack needs secrets.
     envFile ? null,
-    # Stack names (not unit names) this one must come up after - e.g. joining
-    # caddy's `proxy` docker network requires caddy to have created it first.
-    dependsOnStacks ? [],
   }: let
     # --env-file feeds compose's own `${VAR}` substitution in compose.yaml
     # (image tags, volume paths, ...). Distinct from `env_file:` inside the
     # compose file itself, which only sets the *container's* environment.
     composeCmd = "${pkgs.docker}/bin/docker compose" + lib.optionalString (envFile != null) " --env-file ${envFile}";
-    dependsOnUnits = map (n: "${composeUnitName n}.service") dependsOnStacks;
   in {
     description = "docker compose stack: ${name}";
     after =
       ["docker.service" "network-online.target"]
       # sops-nix.service renders envFile; must exist before compose reads it.
-      ++ lib.optional (envFile != null) "sops-nix.service"
-      ++ dependsOnUnits;
+      ++ lib.optional (envFile != null) "sops-nix.service";
     wants = ["network-online.target"] ++ lib.optional (envFile != null) "sops-nix.service";
     # `requires`, unlike `wants`, fails this unit if the dependency fails -
-    # correct here since without docker or the proxy network this stack
-    # can't do anything anyway.
-    requires = ["docker.service"] ++ dependsOnUnits;
+    # correct here since without docker this stack can't do anything anyway.
+    requires = ["docker.service"];
     # start automatically on boot
     wantedBy = ["multi-user.target"];
     # puts `docker` on PATH for the bare command below
@@ -104,28 +98,21 @@ in {
 
   systemd.services = mkComposeServices [
     {
-      name = "caddy";
-      dir = ./caddy;
-    }
-    {
       name = "minecraft";
       dir = ./minecraft;
     }
     {
       name = "actual-budget";
       dir = ./actual-budget;
-      dependsOnStacks = ["caddy"];
     }
     {
       name = "sftpgo";
       dir = ./sftpgo;
-      dependsOnStacks = ["caddy"];
     }
     {
       name = "immich";
       dir = ./immich;
       envFile = config.sops.templates."immich.env".path;
-      dependsOnStacks = ["caddy"];
     }
   ];
 

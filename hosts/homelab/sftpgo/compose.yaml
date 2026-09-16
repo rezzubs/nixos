@@ -2,7 +2,8 @@ services:
   sftpgo:
     image: drakkan/sftpgo:v2.7-alpine
     ports:
-      - 8080:8080 # Admin UI
+      - 127.0.0.1:20000:8080 # HTTPD: web admin, web client, REST API
+      - 127.0.0.1:20001:9090 # WebDAV
     environment:
       - SFTPGO_WEBDAVD__BINDINGS__0__PORT=9090
       - SFTPGO_WEBDAVD__BINDINGS__0__ENABLE_HTTPS=false
@@ -18,9 +19,3 @@ services:
       # Home of the sftpgo system user.
       - /mnt/data/sftpgo/home:/var/lib/sftpgo
     restart: unless-stopped
-    networks:
-      - proxy
-networks:
-  proxy:
-    name: proxy
-    external: true

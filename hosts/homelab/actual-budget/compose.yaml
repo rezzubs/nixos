@@ -2,6 +2,8 @@ services:
   actual-budget:
     container_name: actual-budget
     image: docker.io/actualbudget/actual-server:latest
+    ports:
+      - 127.0.0.1:20010:5006
     volumes:
       # '/data' is the path Actual will look for its files in by default, so leave that as-is.
       - /mnt/data/actual-budget:/data
@@ -15,9 +17,3 @@ services:
       retries: 3
       start_period: 20s
     restart: unless-stopped
-    networks:
-      - proxy
-networks:
-  proxy:
-    name: proxy
-    external: true

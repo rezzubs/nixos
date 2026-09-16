@@ -15,9 +15,6 @@ services:
     # extends:
     #   file: hwaccel.transcoding.yml
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
-    networks:
-      - default
-      - proxy
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
@@ -25,7 +22,7 @@ services:
     env_file:
       - /run/secrets-rendered/immich.env
     ports:
-      - 2283:2283
+      - 127.0.0.1:20020:2283
     depends_on:
       - redis
       - database
@@ -69,7 +66,3 @@ services:
     restart: always
 volumes:
   model-cache: null
-networks:
-  proxy:
-    name: proxy
-    external: true

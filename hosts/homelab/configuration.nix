@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ../../profiles/server.nix
     ./backup.nix
+    ./caddy.nix
     ./ddclient.nix
     ./stacks.nix
   ];
