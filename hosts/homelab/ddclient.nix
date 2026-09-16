@@ -12,14 +12,12 @@
     username = "token";
     passwordFile = config.sops.secrets."ddclient/cloudflare_api_token".path;
     domains = [
-      "rezzubs.xyz"
-      "cloud.rezzubs.xyz"
-      "grafana.rezzubs.xyz"
-      "immich.rezzubs.xyz"
-      "mc.rezzubs.xyz"
-      "vikunja.rezzubs.xyz"
       "budget.rezzubs.xyz"
-      "rss.rezzubs.xyz"
+      "cloud.rezzubs.xyz"
+      "immich.rezzubs.xyz"
+      "jellyfin.rezzubs.xyz"
+      "mc.rezzubs.xyz"
+      "rezzubs.xyz"
     ];
     extraConfig = "ttl=1";
   };

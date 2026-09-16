@@ -35,6 +35,7 @@ the `127.0.0.1` bind these would be reachable on every interface regardless of
 | 20001 | sftpgo        | WebDAV |
 | 20010 | actual-budget | HTTP   |
 | 20020 | immich        | HTTP   |
+| 20030 | jellyfin      | HTTP   |
 
 ## Non-conformant
 

@@ -1,15 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ../../profiles/server.nix
     ./backup.nix
     ./caddy.nix
     ./ddclient.nix
+    ./jellyfin.nix
     ./stacks.nix
   ];
 
