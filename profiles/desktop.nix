@@ -1,15 +1,11 @@
 # Common toggles for desktop systems.
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./universal.nix
   ];
 
   custom = lib.mkDefault {
-    kde.enable = true;
+    gnome.enable = true;
   };
 
   services = {
