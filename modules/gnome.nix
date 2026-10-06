@@ -22,8 +22,12 @@
         # The default app selection is bloated, the ones we want are installed
         # explicitly.
         core-apps.enable = false;
+
         # file previewer for nautilus.
         sushi.enable = true;
+
+        # gnome-extension-manager is used so browser-connector is unused.
+        gnome-browser-connector.enable = false;
       };
     };
 
@@ -35,17 +39,30 @@
       seahorse.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      # image viewer
-      loupe
-      # file manager
-      nautilus
-      # disk usage analyzer
-      baobab
+    environment = {
+      systemPackages = let
+        coreApps = with pkgs; [
+          # image viewer
+          loupe
+          # file manager
+          nautilus
+          # disk usage analyzer
+          baobab
 
-      gnome-calendar
-      gnome-clocks
-      gnome-contacts
-    ];
+          gnome-calendar
+          gnome-clocks
+          gnome-contacts
+
+          # a better extension manager.
+          gnome-extension-manager
+        ];
+        extensions = with pkgs.gnomeExtensions; [
+          alphabetical-app-grid
+          caffeine
+          rounded-window-corners-reborn
+        ];
+      in
+        coreApps ++ extensions;
+    };
   };
 }
