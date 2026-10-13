@@ -11,14 +11,18 @@
     zone = "rezzubs.xyz";
     username = "token";
     passwordFile = config.sops.secrets."ddclient/cloudflare_api_token".path;
-    domains = [
-      "budget.rezzubs.xyz"
-      "cloud.rezzubs.xyz"
-      "immich.rezzubs.xyz"
-      "jellyfin.rezzubs.xyz"
-      "mc.rezzubs.xyz"
-      "rezzubs.xyz"
-    ];
+    domains =
+      builtins.map
+      (subDomain: subDomain + ".rezzubs.xyz")
+      [
+        "budget"
+        "cloud"
+        "immich"
+        "jellyfin"
+        "kavita"
+        "mc"
+        "rezzubs"
+      ];
     extraConfig = "ttl=1";
   };
 

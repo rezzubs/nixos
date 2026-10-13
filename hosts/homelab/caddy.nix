@@ -31,6 +31,10 @@
     virtualHosts."jellyfin.rezzubs.xyz".extraConfig = ''
       reverse_proxy 127.0.0.1:20030
     '';
+
+    virtualHosts."kavita.rezzubs.xyz".extraConfig = ''
+      reverse_proxy 127.0.0.1:20040
+    '';
   };
 
   # Caddy binds to these ports

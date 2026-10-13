@@ -79,8 +79,9 @@
       stacks);
 in {
   imports = [
-    ./stacks/jellyfin.nix
     ./stacks/actual-budget.nix
+    ./stacks/jellyfin.nix
+    ./stacks/kavita.nix
     ./stacks/minecraft.nix
     ./stacks/sftpgo.nix
   ];

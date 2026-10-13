@@ -22,6 +22,8 @@
     };
 
     volumes = [
+      # A media directory used as a "virtual folder".
+      "/mnt/data/media:/media"
       # Stores persistent data. Will contain WebDAV users.
       "/mnt/data/sftpgo/data:/srv/sftpgo/data"
       # Stores backups
