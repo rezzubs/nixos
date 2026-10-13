@@ -43,12 +43,18 @@
       # ...but the unit should still read as "active", not "inactive", while
       # those containers keep running.
       RemainAfterExit = true;
-      # A store path. This unit's own text (this line) changes whenever the
-      # stack's compose.yaml does (because the store object's content hash
-      # will change). This makes `nixos-rebuild switch` restart a stack whose
-      # compose.yaml changed - handled by ordinary unit-change detection - no
-      # separate restartTriggers list to keep in sync.
-      WorkingDirectory = dir;
+      # `builtins.path` forces its own, independent store object hashed only
+      # from `dir`'s content - without it, `dir` resolves as a subpath of the
+      # single store copy of the *whole* flake source, so this unit's text
+      # (and thus whether it restarts) would depend on any change anywhere in
+      # the repo, not just this stack's own files. This way, `nixos-rebuild
+      # switch` restarts a stack only when its own compose.yaml changed -
+      # handled by ordinary unit-change detection - no separate
+      # restartTriggers list to keep in sync.
+      WorkingDirectory = builtins.path {
+        path = dir;
+        inherit name;
+      };
       # --remove-orphans stops containers for services no longer in compose.yaml
       # (still scoped to that file, won't touch services from other stacks).
       # Usually redundant, since ExecStop already tore those down against the
