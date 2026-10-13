@@ -80,6 +80,9 @@
 in {
   imports = [
     ./stacks/jellyfin.nix
+    ./stacks/actual-budget.nix
+    ./stacks/minecraft.nix
+    ./stacks/sftpgo.nix
   ];
 
   sops = {
@@ -107,18 +110,6 @@ in {
   };
 
   systemd.services = mkComposeServices [
-    {
-      name = "minecraft";
-      dir = ./stacks/compose/minecraft;
-    }
-    {
-      name = "actual-budget";
-      dir = ./stacks/compose/actual-budget;
-    }
-    {
-      name = "sftpgo";
-      dir = ./stacks/compose/sftpgo;
-    }
     {
       name = "immich";
       dir = ./stacks/compose/immich;

@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}: let
-  minecraftCompose = "${./stacks/compose/minecraft}/compose.yaml";
-in {
+}: {
   sops = {
     secrets = {
       # the encryption password used for the borgbase repositories.
@@ -50,19 +48,21 @@ in {
             }
           ];
           archive_name_format = "minecraft-{now:%Y-%m-%dT%H:%M:%S}";
+          # "minecraft" below is the container name. It has to match the
+          # configured name in `./stacks/minecraft.nix`.
           commands = [
             {
               before = "repository";
               run = [
-                "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-off"
-                "docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-all flush"
+                "docker exec minecraft rcon-cli save-off"
+                "docker exec minecraft rcon-cli save-all flush"
                 "sleep 3"
               ];
             }
             {
               after = "repository";
               states = ["finish" "fail"];
-              run = ["docker compose -f ${minecraftCompose} exec -T minecraft rcon-cli save-on"];
+              run = ["docker exec minecraft rcon-cli save-on"];
             }
           ];
         };
