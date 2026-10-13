@@ -117,4 +117,14 @@ in {
   ];
 
   virtualisation.docker.enable = true;
+
+  # Use docker rather than podman for
+  # `virtualisation.oci-containers.containers.*`. Podman's daemonless
+  # design makes it delegate periodic background work like healthcheck
+  # probing to one-shot systemd timers/services, which nixos-rebuild's
+  # switch-to-configuration-ng can pick up as a spurious activation failure if
+  # a probe races a container's startup. Docker runs its healthcheck loop inside
+  # the already-running dockerd daemon instead, so no such unit ever exists
+  # to race.
+  virtualisation.oci-containers.backend = "docker";
 }
