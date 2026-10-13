@@ -78,6 +78,10 @@
       })
       stacks);
 in {
+  imports = [
+    ./stacks/jellyfin.nix
+  ];
+
   sops = {
     secrets = {
       "immich/db_password" = {};
@@ -105,19 +109,19 @@ in {
   systemd.services = mkComposeServices [
     {
       name = "minecraft";
-      dir = ./minecraft;
+      dir = ./stacks/compose/minecraft;
     }
     {
       name = "actual-budget";
-      dir = ./actual-budget;
+      dir = ./stacks/compose/actual-budget;
     }
     {
       name = "sftpgo";
-      dir = ./sftpgo;
+      dir = ./stacks/compose/sftpgo;
     }
     {
       name = "immich";
-      dir = ./immich;
+      dir = ./stacks/compose/immich;
       envFile = config.sops.templates."immich.env".path;
     }
   ];

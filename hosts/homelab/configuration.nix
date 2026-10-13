@@ -5,7 +5,6 @@
     ./backup.nix
     ./caddy.nix
     ./ddclient.nix
-    ./jellyfin.nix
     ./stacks.nix
   ];
 
