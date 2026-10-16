@@ -28,10 +28,8 @@ in {
       ])
       ++ (with pkgs-unstable; [
         hunk
-      ])
-      ++ [
-        inputs.herdr.packages.${pkgs.system}.default
-      ];
+        herdr
+      ]);
 
     programs = {
       # better shell history
