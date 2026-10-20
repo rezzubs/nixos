@@ -38,6 +38,11 @@ in {
       # `cat` but better
       bat.enable = true;
 
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+
       # `find` but better
       fd.enable = true;
 
