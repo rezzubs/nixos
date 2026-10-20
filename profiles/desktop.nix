@@ -1,5 +1,5 @@
 # Common toggles for desktop systems.
-{lib, ...}: {
+{ lib, ... }: {
   imports = [
     ./universal.nix
   ];

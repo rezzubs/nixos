@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../profiles/server.nix
@@ -9,17 +9,20 @@
   ];
 
   fileSystems = {
-    "/".options = ["compress=zstd"];
-    "/home".options = ["compress=zstd"];
-    "/mnt/data".options = ["compress=zstd"];
-    "/nix/store".options = ["compress=zstd" "noatime"];
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/mnt/data".options = [ "compress=zstd" ];
+    "/nix/store".options = [
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   networking.hostName = "homelab";
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
-    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

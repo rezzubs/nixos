@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   dataRoot = "/mnt/ssd/jellyfin";
-in {
+in
+{
   # Installs Mesa's radeonsi (VAAPI) and RADV (Vulkan) drivers on the host so
   # /dev/dri exposes working AMD hardware acceleration for the container to
   # bind-mount in.

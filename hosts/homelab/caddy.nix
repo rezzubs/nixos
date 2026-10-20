@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   # Reverse proxy in front of the various services.
   services.caddy = {
     enable = true;
@@ -39,7 +39,10 @@
 
   # Caddy binds to these ports
   networking.firewall = {
-    allowedTCPPorts = [80 443];
-    allowedUDPPorts = [443]; # HTTP/3
+    allowedTCPPorts = [
+      80
+      443
+    ];
+    allowedUDPPorts = [ 443 ]; # HTTP/3
   };
 }

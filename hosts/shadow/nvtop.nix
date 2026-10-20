@@ -1,5 +1,5 @@
 # nvtop pulls in a bunch of proprietary CUDA libraries just to report GPU stats.
-{pkgs, ...}: {
+{ pkgs, ... }: {
   nixpkgs.config.allowUnfreePackages = [
     "libnpp"
     "libcusparse"
@@ -25,5 +25,5 @@
     "libcublas"
   ];
 
-  environment.systemPackages = [pkgs.nvtopPackages.nvidia];
+  environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
 }

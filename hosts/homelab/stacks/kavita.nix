@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   virtualisation.oci-containers.containers.kavita = {
     image = "docker.io/jvmilazz0/kavita:0.9.1";
 

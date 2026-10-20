@@ -3,8 +3,9 @@
   lib,
   inputs,
   ...
-}: {
-  imports = [inputs.rounded-corners.homeModules.default];
+}:
+{
+  imports = [ inputs.rounded-corners.homeModules.default ];
 
   options.custom.roundedCorners.enable = lib.mkEnableOption "the fake rounded corners overlay for wlr-layer-shell compositors";
 

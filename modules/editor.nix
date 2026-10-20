@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.custom.editor.enable = lib.mkEnableOption "set helix as the editor";
 
   config = lib.mkIf config.custom.editor.enable {
@@ -11,7 +12,7 @@
       sessionVariables = {
         EDITOR = "hx";
       };
-      systemPackages = [pkgs.helix];
+      systemPackages = [ pkgs.helix ];
     };
 
     programs.nano.enable = false;

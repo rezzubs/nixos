@@ -20,70 +20,73 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    sops-nix,
-    ...
-  }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-      tower = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/tower/configuration.nix];
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      sops-nix,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        tower = nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/tower/configuration.nix ];
+        };
+
+        elitebook = nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/elitebook/configuration.nix ];
+        };
+
+        shadow = nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/shadow/configuration.nix ];
+        };
+
+        homelab = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/homelab/configuration.nix
+            sops-nix.nixosModules.sops
+          ];
+        };
       };
 
-      elitebook = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/elitebook/configuration.nix];
+      homeConfigurations = {
+        "rezzubs@tower" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+
+          modules = [ ./hosts/tower/home.nix ];
+        };
+
+        "rezzubs@elitebook" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+
+          modules = [ ./hosts/elitebook/home.nix ];
+        };
+
+        "rezzubs@homelab" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+
+          modules = [ ./hosts/homelab/home.nix ];
+        };
       };
 
-      shadow = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/shadow/configuration.nix];
-      };
-
-      homelab = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hosts/homelab/configuration.nix
-          sops-nix.nixosModules.sops
-        ];
-      };
+      formatter.${system} = pkgs.nixfmt-tree;
     };
-
-    homeConfigurations = {
-      "rezzubs@tower" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-
-        modules = [./hosts/tower/home.nix];
-      };
-
-      "rezzubs@elitebook" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-
-        modules = [./hosts/elitebook/home.nix];
-      };
-
-      "rezzubs@homelab" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-
-        modules = [./hosts/homelab/home.nix];
-      };
-    };
-
-    formatter.${system} = pkgs.alejandra;
-  };
 }

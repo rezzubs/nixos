@@ -3,16 +3,20 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../profiles/desktop.nix
   ];
 
   fileSystems = {
-    "/".options = ["compress=zstd"];
-    "/home".options = ["compress=zstd"];
-    "/nix/store".options = ["compress=zstd" "noatime"];
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/nix/store".options = [
+      "compress=zstd"
+      "noatime"
+    ];
 
     "/mnt/data0" = {
       device = "/dev/disk/by-uuid/fda2eadb-817c-48c5-b6f9-fb69085c6433";

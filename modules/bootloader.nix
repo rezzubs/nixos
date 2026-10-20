@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.custom.bootLoader.enable = lib.mkEnableOption "enable boot loader configuration";
 
   config = lib.mkIf config.custom.bootLoader.enable {

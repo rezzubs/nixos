@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./wayland.nix
   ];
@@ -17,24 +18,26 @@
     };
   };
 
-  config = lib.mkIf config.custom.niri.enable (lib.mkMerge [
-    {
-      custom.wayland.enable = true;
+  config = lib.mkIf config.custom.niri.enable (
+    lib.mkMerge [
+      {
+        custom.wayland.enable = true;
 
-      programs.niri.enable = true;
+        programs.niri.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        # Xwayland support. Niri integrates it automatically.
-        xwayland-satellite
-        # programs.niri uses nautilus as the file picker by default.
-        nautilus
-      ];
-    }
-    (lib.mkIf config.custom.niri.noctalia {
-      services = {
-        power-profiles-daemon.enable = true;
-        upower.enable = true;
-      };
-    })
-  ]);
+        environment.systemPackages = with pkgs; [
+          # Xwayland support. Niri integrates it automatically.
+          xwayland-satellite
+          # programs.niri uses nautilus as the file picker by default.
+          nautilus
+        ];
+      }
+      (lib.mkIf config.custom.niri.noctalia {
+        services = {
+          power-profiles-daemon.enable = true;
+          upower.enable = true;
+        };
+      })
+    ]
+  );
 }

@@ -1,6 +1,6 @@
 # Defaults for all machines.
-{lib, ...}: {
-  imports = [../.];
+{ lib, ... }: {
+  imports = [ ../. ];
 
   custom = lib.mkDefault {
     claude.enable = true;

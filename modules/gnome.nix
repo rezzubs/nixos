@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./wayland.nix
   ];
@@ -40,28 +41,29 @@
     };
 
     environment = {
-      systemPackages = let
-        coreApps = with pkgs; [
-          # image viewer
-          loupe
-          # file manager
-          nautilus
-          # disk usage analyzer
-          baobab
+      systemPackages =
+        let
+          coreApps = with pkgs; [
+            # image viewer
+            loupe
+            # file manager
+            nautilus
+            # disk usage analyzer
+            baobab
 
-          gnome-calendar
-          gnome-clocks
-          gnome-contacts
+            gnome-calendar
+            gnome-clocks
+            gnome-contacts
 
-          # a better extension manager.
-          gnome-extension-manager
-        ];
-        extensions = with pkgs.gnomeExtensions; [
-          alphabetical-app-grid
-          caffeine
-          rounded-window-corners-reborn
-        ];
-      in
+            # a better extension manager.
+            gnome-extension-manager
+          ];
+          extensions = with pkgs.gnomeExtensions; [
+            alphabetical-app-grid
+            caffeine
+            rounded-window-corners-reborn
+          ];
+        in
         coreApps ++ extensions;
     };
   };

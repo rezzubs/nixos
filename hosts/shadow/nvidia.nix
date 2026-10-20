@@ -1,6 +1,6 @@
 # Proprietary NVIDIA driver for the 4090.
-{config, ...}: {
-  nixpkgs.config.allowUnfreePackages = ["nvidia-x11"];
+{ config, ... }: {
+  nixpkgs.config.allowUnfreePackages = [ "nvidia-x11" ];
 
   hardware = {
     nvidia = {
@@ -18,7 +18,7 @@
     nvidia-container-toolkit.enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   programs.nix-ld.libraries = [
     # provides libcuda.so.1

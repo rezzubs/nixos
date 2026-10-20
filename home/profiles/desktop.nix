@@ -4,12 +4,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
   };
-in {
-  imports = [./universal.nix];
+in
+{
+  imports = [ ./universal.nix ];
 
   custom = lib.mkDefault {
     ghostty.enable = true;

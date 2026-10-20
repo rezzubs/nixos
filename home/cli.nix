@@ -4,12 +4,14 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   # hunk hasn't reached the 26.05 release channel yet.
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
   };
-in {
+in
+{
   options.custom.cli.enable = lib.mkEnableOption "shell & common cli tools";
 
   config = lib.mkIf config.custom.cli.enable {

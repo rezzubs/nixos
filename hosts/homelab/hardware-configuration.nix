@@ -7,38 +7,46 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/33b8c6b5-6d46-4414-b2d6-f58e1252acd0";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = [ "subvol=@" ];
   };
 
   fileSystems."/nix/store" = {
     device = "/dev/disk/by-uuid/33b8c6b5-6d46-4414-b2d6-f58e1252acd0";
     fsType = "btrfs";
-    options = ["subvol=@nix-store"];
+    options = [ "subvol=@nix-store" ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/33b8c6b5-6d46-4414-b2d6-f58e1252acd0";
     fsType = "btrfs";
-    options = ["subvol=@home"];
+    options = [ "subvol=@home" ];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/2C26-C44E";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   fileSystems."/mnt/data" = {
@@ -46,7 +54,7 @@
     fsType = "btrfs";
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

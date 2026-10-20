@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.custom.vcs.enable = lib.mkEnableOption "git and jujutsu version control";
 
   config = lib.mkIf config.custom.vcs.enable {

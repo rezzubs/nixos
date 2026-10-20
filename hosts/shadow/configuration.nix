@@ -1,5 +1,5 @@
 # 🐈‍⬛ HPC server
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ../../profiles/server.nix
     ./distrobox.nix
@@ -15,9 +15,12 @@
   ];
 
   fileSystems = {
-    "/".options = ["compress=zstd"];
-    "/home".options = ["compress=zstd"];
-    "/nix/store".options = ["compress=zstd" "noatime"];
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/nix/store".options = [
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   networking.hostName = "shadow";

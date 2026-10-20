@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.custom.niri = {
     enable = lib.mkEnableOption "the niri config file";
 
@@ -23,7 +24,9 @@
 
     home.file.".config/niri/config.kdl".text =
       builtins.readFile ./niri/config.kdl
-      + lib.optionalString (config.custom.niri.hostConfig != null) (builtins.readFile config.custom.niri.hostConfig);
+      + lib.optionalString (config.custom.niri.hostConfig != null) (
+        builtins.readFile config.custom.niri.hostConfig
+      );
 
     gtk = {
       enable = true;

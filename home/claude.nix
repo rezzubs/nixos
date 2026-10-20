@@ -4,15 +4,17 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
     config.allowUnfreePredicate = pkg: lib.getName pkg == "claude-code";
   };
-in {
+in
+{
   options.custom.claude.enable = lib.mkEnableOption "claude code";
 
   config = lib.mkIf config.custom.claude.enable {
-    home.packages = [pkgs-unstable.claude-code];
+    home.packages = [ pkgs-unstable.claude-code ];
   };
 }

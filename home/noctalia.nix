@@ -3,8 +3,9 @@
   lib,
   inputs,
   ...
-}: {
-  imports = [inputs.noctalia.homeModules.default];
+}:
+{
+  imports = [ inputs.noctalia.homeModules.default ];
 
   options.custom.noctalia = {
     enable = lib.mkEnableOption "use the noctalia shell";
@@ -22,7 +23,10 @@
         backdrop.enabled = true;
 
         bar.default = {
-          center = ["clock" "weather"];
+          center = [
+            "clock"
+            "weather"
+          ];
           margin_ends = 0;
           padding = 12;
           position = "left";
@@ -53,7 +57,11 @@
         desktop_widgets.enabled = false;
 
         idle = {
-          behavior_order = ["screen-off" "lock" "lock-and-suspend"];
+          behavior_order = [
+            "screen-off"
+            "lock"
+            "lock-and-suspend"
+          ];
           behavior = {
             lock = {
               action = "lock";

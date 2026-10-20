@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.custom.ghostty.enable = lib.mkEnableOption "enable the ghostty terminal emulator";
 
   config = lib.mkIf config.custom.ghostty.enable {
