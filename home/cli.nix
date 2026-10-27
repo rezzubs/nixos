@@ -6,7 +6,6 @@
   ...
 }:
 let
-  # hunk hasn't reached the 26.05 release channel yet.
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
   };
@@ -65,7 +64,10 @@ in
       ripgrep.enable = true;
 
       # terminal prompt
-      starship.enable = true;
+      starship = {
+        enable = true;
+        package = pkgs-unstable.starship;
+      };
 
       # file manager `y`
       yazi.enable = true;

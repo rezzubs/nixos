@@ -1,8 +1,15 @@
 {
   config,
+  inputs,
   lib,
+  pkgs,
   ...
 }:
+let
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+  };
+in
 {
   options.custom.vcs.enable = lib.mkEnableOption "git and jujutsu version control";
 
@@ -18,6 +25,7 @@
 
       jujutsu = {
         enable = true;
+        package = pkgs-unstable.jujutsu;
         settings = {
           user = {
             email = "marten.roots@gmail.com";
