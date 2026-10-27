@@ -49,7 +49,7 @@
             # Language level overrides. Empty table to include at least the common
             # config.
             languages = {
-              nix = {};
+              nix = { };
 
               python = {
                 # Uncomment when the next release of helix lands. See

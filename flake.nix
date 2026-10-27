@@ -18,14 +18,19 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # For Framework 13 Pro modules
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
       home-manager,
+      nixos-hardware,
+      nixpkgs,
       sops-nix,
       ...
     }:
@@ -41,6 +46,13 @@
 
         elitebook = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/elitebook/configuration.nix ];
+        };
+
+        fw13 = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/fw13/configuration.nix
+            nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+          ];
         };
 
         shadow = nixpkgs.lib.nixosSystem {
@@ -85,6 +97,17 @@
 
           modules = [ ./hosts/homelab/home.nix ];
         };
+
+        "rezzubs@fw13" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+
+          modules = [ ./hosts/fw13/home.nix ];
+        };
+
       };
 
       formatter.${system} = pkgs.nixfmt-tree;
