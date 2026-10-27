@@ -18,9 +18,12 @@
 
       jujutsu = {
         enable = true;
-        settings.user = {
-          email = "marten.roots@gmail.com";
-          name = "Marten Roots";
+        settings = {
+          user = {
+            email = "marten.roots@gmail.com";
+            name = "Marten Roots";
+          };
+          ui.default-command = "log";
         };
       };
     };
