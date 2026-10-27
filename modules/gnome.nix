@@ -63,8 +63,9 @@
             caffeine
             rounded-window-corners-reborn
           ];
+          extraPackages = lib.optional config.services.flatpak.enable pkgs.bazaar;
         in
-        coreApps ++ extensions;
+        coreApps ++ extensions ++ extraPackages;
     };
   };
 }
