@@ -10,7 +10,7 @@
     programs.ghostty = {
       enable = true;
       settings = {
-        command = "fish";
+        command = lib.getExe config.programs.nushell.package;
         theme = "Catppuccin Mocha";
         window-theme = "ghostty"; # use `theme` also for tab bars.
         window-decoration = "auto";
