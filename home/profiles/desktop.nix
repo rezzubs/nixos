@@ -1,15 +1,9 @@
 # Defaults for machines with a graphical environment
 {
-  inputs,
+  pkgs-unstable,
   lib,
-  pkgs,
   ...
 }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
-  };
-in
 {
   imports = [ ./universal.nix ];
 

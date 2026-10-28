@@ -31,12 +31,14 @@
       home-manager,
       nixos-hardware,
       nixpkgs,
+      nixpkgs-unstable,
       sops-nix,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
@@ -72,7 +74,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs pkgs-unstable;
           };
 
           modules = [ ./hosts/tower/home.nix ];
@@ -82,7 +84,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs pkgs-unstable;
           };
 
           modules = [ ./hosts/elitebook/home.nix ];
@@ -92,7 +94,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs pkgs-unstable;
           };
 
           modules = [ ./hosts/homelab/home.nix ];
@@ -102,7 +104,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs pkgs-unstable;
           };
 
           modules = [ ./hosts/fw13/home.nix ];

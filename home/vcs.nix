@@ -1,15 +1,9 @@
 {
   config,
-  inputs,
+  pkgs-unstable,
   lib,
-  pkgs,
   ...
 }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
-  };
-in
 {
   options.custom.vcs.enable = lib.mkEnableOption "git and jujutsu version control";
 

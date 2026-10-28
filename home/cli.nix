@@ -1,15 +1,10 @@
 {
   config,
-  inputs,
+  pkgs-unstable,
   lib,
   pkgs,
   ...
 }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
-  };
-in
 {
   options.custom.cli.enable = lib.mkEnableOption "shell & common cli tools";
 
