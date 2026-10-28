@@ -14,6 +14,7 @@
         theme = "Catppuccin Mocha";
         window-theme = "ghostty"; # use `theme` also for tab bars.
         window-decoration = "auto";
+        mouse-hide-while-typing = true;
       };
     };
   };
