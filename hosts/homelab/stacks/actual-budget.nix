@@ -1,6 +1,6 @@
 {
   virtualisation.oci-containers.containers.actual-budget = {
-    image = "docker.io/actualbudget/actual-server:latest";
+    image = "docker.io/actualbudget/actual-server:26.11.0-alpine";
 
     ports = [
       "127.0.0.1:20010:5006"
