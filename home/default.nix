@@ -10,6 +10,7 @@
     ./noctalia.nix
     ./obsidian.nix
     ./rounded-corners.nix
+    ./taltech-vpn.nix
     ./vcs.nix
   ];
 }
