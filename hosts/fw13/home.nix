@@ -1,9 +1,5 @@
 { ... }: {
-  imports = [ ../../home/profiles/desktop.nix ];
-
-  custom = {
-    taltech-vpn.enable = true;
-  };
+  imports = [ ../../home/taltech-vpn.nix ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

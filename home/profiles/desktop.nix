@@ -1,16 +1,11 @@
 # Defaults for machines with a graphical environment
+{ pkgs, ... }:
 {
-  lib,
-  pkgs,
-  ...
-}:
-{
-  imports = [ ./universal.nix ];
-
-  custom = lib.mkDefault {
-    ghostty.enable = true;
-    obsidian.enable = true;
-  };
+  imports = [
+    ./universal.nix
+    ../ghostty.nix
+    ../obsidian.nix
+  ];
 
   programs.firefox = {
     enable = true;

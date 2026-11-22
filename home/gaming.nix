@@ -1,17 +1,9 @@
+# Gaming related tools.
+{ pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  options.custom.gaming.enable = lib.mkEnableOption "gaming related tools";
+  programs.lutris.enable = true;
 
-  config = lib.mkIf config.custom.gaming.enable {
-    programs.lutris.enable = true;
-
-    home.packages = with pkgs; [
-      yafc-ce
-    ];
-  };
+  home.packages = with pkgs; [
+    yafc-ce
+  ];
 }

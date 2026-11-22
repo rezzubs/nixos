@@ -1,21 +1,17 @@
 # Common configs for all systems. Base for all other profiles.
-{
-  config,
-  lib,
-  ...
-}:
+{ lib, ... }:
 {
   imports = [
-    ../.
+    ../../shared/unstable-packages.nix
+    ../bootloader.nix
+    ../editor.nix
+    ../home-manager.nix
+    ../nix.nix
+    ../swap.nix
+    ../users.nix
   ];
 
-  custom = lib.mkDefault {
-    bootLoader.enable = true;
-    editor.enable = true;
-    nix.enable = true;
-    swap.enable = true;
-    users.enable = true;
-  };
+  home-manager.users.rezzubs.imports = [ ../../home/profiles/universal.nix ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 

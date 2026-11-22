@@ -1,12 +1,11 @@
 # Common toggles for desktop systems.
-{ lib, ... }: {
+{ ... }: {
   imports = [
     ./universal.nix
+    ../gnome.nix
   ];
 
-  custom = lib.mkDefault {
-    gnome.enable = true;
-  };
+  home-manager.users.rezzubs.imports = [ ../../home/profiles/desktop.nix ];
 
   services = {
     printing.enable = true;

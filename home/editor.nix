@@ -1,74 +1,66 @@
+# Helix as the default editor.
+{ lib, pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  options.custom.editor.enable = lib.mkEnableOption "helix as the default editor";
+  home.packages = with pkgs; [
+    # enable a nix language server and formatter globally.
+    nil
+    nixfmt
+  ];
 
-  config = lib.mkIf config.custom.editor.enable {
-    home.packages = with pkgs; [
-      # enable a nix language server and formatter globally.
-      nil
-      nixfmt
-    ];
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
 
-    programs.helix = {
-      enable = true;
-      defaultEditor = true;
+    settings = {
+      theme = "catppuccin_mocha";
 
-      settings = {
-        theme = "catppuccin_mocha";
+      keys.normal.space.t = ":toggle soft-wrap.enable";
 
-        keys.normal.space.t = ":toggle soft-wrap.enable";
+      editor = {
+        line-number = "relative";
 
-        editor = {
-          line-number = "relative";
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+        };
 
-          cursor-shape = {
-            insert = "bar";
-            normal = "block";
+        indent-guides.render = true;
+      };
+    };
+
+    languages = {
+      language-server.rust-analyzer.config = {
+        check.command = "clippy";
+      };
+
+      language =
+        let
+          # Common settings applied to all languages.
+          commonConfig = {
+            auto-format = true;
           };
+          # Language level overrides. Empty table to include at least the common
+          # config.
+          languages = {
+            nix = { };
 
-          indent-guides.render = true;
-        };
-      };
-
-      languages = {
-        language-server.rust-analyzer.config = {
-          check.command = "clippy";
-        };
-
-        language =
-          let
-            # Common settings applied to all languages.
-            commonConfig = {
-              auto-format = true;
+            python = {
+              # Uncomment when the next release of helix lands. See
+              # https://github.com/helix-editor/helix/pull/14481
+              # language-servers = ["ruff" "ty"];
+              # code-actions-on-save = ["source.organizeImports.ruff"];
             };
-            # Language level overrides. Empty table to include at least the common
-            # config.
-            languages = {
-              nix = { };
-
-              python = {
-                # Uncomment when the next release of helix lands. See
-                # https://github.com/helix-editor/helix/pull/14481
-                # language-servers = ["ruff" "ty"];
-                # code-actions-on-save = ["source.organizeImports.ruff"];
-              };
-              rust = { };
-            };
-          in
-          lib.mapAttrsToList (
-            name: values:
-            commonConfig
-            // {
-              inherit name;
-            }
-            // values
-          ) languages;
-      };
+            rust = { };
+          };
+        in
+        lib.mapAttrsToList (
+          name: values:
+          commonConfig
+          // {
+            inherit name;
+          }
+          // values
+        ) languages;
     };
   };
 }

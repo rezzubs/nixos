@@ -1,14 +1,6 @@
+{ ... }:
 {
-  config,
-  lib,
-  ...
-}:
-{
-  options.custom.obsidian.enable = lib.mkEnableOption "obsidian";
+  nixpkgs.config.allowUnfreePackages = [ "obsidian" ];
 
-  config = lib.mkIf config.custom.obsidian.enable {
-    nixpkgs.config.allowUnfreePackages = [ "obsidian" ];
-
-    programs.obsidian.enable = true;
-  };
+  programs.obsidian.enable = true;
 }

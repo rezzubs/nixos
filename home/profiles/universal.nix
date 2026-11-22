@@ -1,13 +1,12 @@
 # Defaults for all machines.
-{ lib, ... }: {
-  imports = [ ../. ];
-
-  custom = lib.mkDefault {
-    claude.enable = true;
-    cli.enable = true;
-    editor.enable = true;
-    vcs.enable = true;
-  };
+{ ... }: {
+  imports = [
+    ../../shared/unstable-packages.nix
+    ../claude.nix
+    ../cli.nix
+    ../editor.nix
+    ../vcs.nix
+  ];
 
   home = {
     username = "rezzubs";
