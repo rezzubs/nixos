@@ -3,6 +3,7 @@
 {
   imports = [
     ../../shared/unstable-packages.nix
+    ../bluetooth.nix
     ../bootloader.nix
     ../editor.nix
     ../home-manager.nix

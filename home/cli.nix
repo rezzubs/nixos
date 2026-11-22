@@ -12,7 +12,6 @@
       tealdeer
       tokei
       tree
-      wl-clipboard
     ])
     ++ (with pkgs.unstable; [
       hunk
