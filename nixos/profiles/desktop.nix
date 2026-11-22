@@ -2,7 +2,7 @@
 { ... }: {
   imports = [
     ./base.nix
-    ../gnome.nix
+    ../sway.nix
   ];
 
   home-manager.users.rezzubs.imports = [ ../../home/profiles/desktop.nix ];
