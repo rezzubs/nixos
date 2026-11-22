@@ -4,6 +4,7 @@
     ./bootloader.nix
     ./editor.nix
     ./gnome.nix
+    ./home-manager.nix
     ./nix.nix
     ./steam.nix
     ./swap.nix

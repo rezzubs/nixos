@@ -20,6 +20,8 @@
   };
 
   networking.hostName = "fw13";
+
+  home-manager.users.rezzubs = ./home.nix;
   hardware.bluetooth.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,

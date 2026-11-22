@@ -31,6 +31,8 @@
   };
 
   networking.hostName = "tower";
+
+  home-manager.users.rezzubs = ./home.nix;
   hardware.bluetooth.enable = true;
 
   custom = {
