@@ -23,26 +23,27 @@
       home-manager,
       nixos-hardware,
       nixpkgs,
-      nixpkgs-unstable,
       sops-nix,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
         tower = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/tower/configuration.nix ];
         };
 
         elitebook = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/elitebook/configuration.nix ];
         };
 
         fw13 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/fw13/configuration.nix
             nixos-hardware.nixosModules.framework-intel-core-ultra-series3
@@ -50,10 +51,12 @@
         };
 
         shadow = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/shadow/configuration.nix ];
         };
 
         homelab = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/homelab/configuration.nix
             sops-nix.nixosModules.sops
@@ -66,7 +69,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs pkgs-unstable;
+            inherit inputs;
           };
 
           modules = [ ./hosts/tower/home.nix ];
@@ -76,7 +79,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs pkgs-unstable;
+            inherit inputs;
           };
 
           modules = [ ./hosts/elitebook/home.nix ];
@@ -86,7 +89,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs pkgs-unstable;
+            inherit inputs;
           };
 
           modules = [ ./hosts/homelab/home.nix ];
@@ -96,7 +99,7 @@
           inherit pkgs;
 
           extraSpecialArgs = {
-            inherit inputs pkgs-unstable;
+            inherit inputs;
           };
 
           modules = [ ./hosts/fw13/home.nix ];

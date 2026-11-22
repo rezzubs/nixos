@@ -1,7 +1,7 @@
 # Defaults for machines with a graphical environment
 {
-  pkgs-unstable,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -15,6 +15,6 @@
   programs.firefox = {
     enable = true;
     # firefox 157 is not in stable yet
-    package = pkgs-unstable.firefox;
+    package = pkgs.unstable.firefox;
   };
 }

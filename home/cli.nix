@@ -1,6 +1,5 @@
 {
   config,
-  pkgs-unstable,
   lib,
   pkgs,
   ...
@@ -22,7 +21,7 @@
         tree
         wl-clipboard
       ])
-      ++ (with pkgs-unstable; [
+      ++ (with pkgs.unstable; [
         hunk
         herdr
       ]);
@@ -57,7 +56,7 @@
       # terminal prompt
       starship = {
         enable = true;
-        package = pkgs-unstable.starship;
+        package = pkgs.unstable.starship;
       };
 
       # file manager `y`

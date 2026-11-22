@@ -7,7 +7,7 @@
   options.custom.obsidian.enable = lib.mkEnableOption "obsidian";
 
   config = lib.mkIf config.custom.obsidian.enable {
-    custom.unfreePackages = [ "obsidian" ];
+    nixpkgs.config.allowUnfreePackages = [ "obsidian" ];
 
     programs.obsidian.enable = true;
   };

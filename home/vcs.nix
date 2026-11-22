@@ -1,7 +1,7 @@
 {
   config,
-  pkgs-unstable,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -19,7 +19,7 @@
 
       jujutsu = {
         enable = true;
-        package = pkgs-unstable.jujutsu;
+        package = pkgs.unstable.jujutsu;
         settings = {
           user = {
             email = "marten.roots@gmail.com";

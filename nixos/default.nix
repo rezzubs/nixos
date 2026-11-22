@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ../shared/unstable-packages.nix
     ./bootloader.nix
     ./editor.nix
     ./gnome.nix
