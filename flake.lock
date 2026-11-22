@@ -74,55 +74,13 @@
         "type": "github"
       }
     },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1794277964,
-        "narHash": "sha256-+lSWclNb9XCgYvoaqfznFwo4hAmsVgx1+2UjI/dWsow=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia",
-        "rev": "2d3545609f4d2d0952ae169cebac6bb658c3a7b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "noctalia": "noctalia",
-        "rounded-corners": "rounded-corners",
         "sops-nix": "sops-nix"
-      }
-    },
-    "rounded-corners": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785865485,
-        "narHash": "sha256-qemaSQ9fwUEMjTB0YUFoRM/t5q2SvHnM4w+g81snLSs=",
-        "owner": "rezzubs",
-        "repo": "wayland-rounded-corners",
-        "rev": "27a5372192f3364b024638e7e711296ab9800550",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rezzubs",
-        "repo": "wayland-rounded-corners",
-        "type": "github"
       }
     },
     "sops-nix": {
