@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../profiles/desktop.nix
+    ../../nixos/profiles/desktop.nix
   ];
 
   fileSystems = {

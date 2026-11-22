@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-    ../../profiles/server.nix
+    ../../nixos/profiles/server.nix
     ./backup.nix
     ./caddy.nix
     ./ddclient.nix

@@ -1,7 +1,7 @@
 # 🐈‍⬛ HPC server
 { pkgs, ... }: {
   imports = [
-    ../../profiles/server.nix
+    ../../nixos/profiles/server.nix
     ./distrobox.nix
     ./hardware-configuration.nix
     ./nvidia.nix
