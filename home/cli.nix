@@ -37,12 +37,6 @@
     # fuzzy finder
     fzf.enable = true;
 
-    # A modern shell
-    nushell = {
-      enable = true;
-      configFile.source = ./config.nu;
-    };
-
     # grep but better
     ripgrep.enable = true;
 

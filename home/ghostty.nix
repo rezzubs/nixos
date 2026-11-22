@@ -4,6 +4,9 @@
   ...
 }:
 {
+  # The shell to launch.
+  imports = [ ./nushell.nix ];
+
   programs.ghostty = {
     enable = true;
     settings = {

@@ -4,7 +4,9 @@
     ../../shared/unstable-packages.nix
     ../claude.nix
     ../cli.nix
+    ../dotfiles.nix
     ../editor.nix
+    ../nushell.nix
     ../vcs.nix
   ];
 
