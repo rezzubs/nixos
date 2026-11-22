@@ -47,8 +47,6 @@
           nixos-hardware.nixosModules.framework-intel-core-ultra-series3
         ];
 
-        shadow = mkNixosSystem [ ./hosts/shadow/configuration.nix ];
-
         homelab = mkNixosSystem [
           ./hosts/homelab/configuration.nix
           sops-nix.nixosModules.sops
