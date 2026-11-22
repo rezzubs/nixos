@@ -1,0 +1,10 @@
+output "BNQ BenQ GW2470 C6G01568019" {
+    mode 1920x1080@60Hz
+    transform 270
+    position -1080 -400
+}
+
+output "LG Electronics LG ULTRAWIDE 504NTPCDF824" {
+    mode 3440x1440@99.997Hz
+    position 0 0
+}

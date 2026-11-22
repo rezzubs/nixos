@@ -1,0 +1,2 @@
+# Default monitor setup: sway picks outputs automatically.
+# Hosts override this with custom.sway.outputsFile.

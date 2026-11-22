@@ -1,4 +1,6 @@
 { ... }: {
+  custom.sway.outputsFile = ./sway-outputs;
+
   imports = [ ../../home/gaming.nix ];
 
   # This value determines the Home Manager release that your configuration is

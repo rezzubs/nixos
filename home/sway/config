@@ -20,6 +20,9 @@ input type:touchpad {
     dwt enabled
 }
 
+# Host-specific monitor setup, see custom.sway.outputsFile
+include ~/.config/sway/outputs
+
 # Appearance
 output * bg #000000 solid_color
 default_border pixel 2
