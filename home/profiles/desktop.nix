@@ -2,7 +2,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./universal.nix
+    ./base.nix
     ../ghostty.nix
     ../obsidian.nix
   ];

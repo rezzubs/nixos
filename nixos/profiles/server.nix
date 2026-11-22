@@ -1,5 +1,5 @@
 { ... }: {
-  imports = [ ./universal.nix ];
+  imports = [ ./base.nix ];
 
   services = {
     openssh = {

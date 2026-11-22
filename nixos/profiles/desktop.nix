@@ -1,7 +1,7 @@
 # Common toggles for desktop systems.
 { ... }: {
   imports = [
-    ./universal.nix
+    ./base.nix
     ../gnome.nix
   ];
 

@@ -11,7 +11,7 @@
     ../users.nix
   ];
 
-  home-manager.users.rezzubs.imports = [ ../../home/profiles/universal.nix ];
+  home-manager.users.rezzubs.imports = [ ../../home/profiles/base.nix ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 
