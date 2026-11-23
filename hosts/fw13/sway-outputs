@@ -1,0 +1,15 @@
+# laptop display
+output "China Star Optoelectronics Technology Co., Ltd MND508ZB1-1 Unknown" {
+	mode 2880x1920@120Hz
+	scale 2
+	position 0 0
+	adaptive_sync on
+}
+
+# work monitor
+output "Acer Technologies XZ270U P 13260320C3W01" {
+	mode 2560x1440@119.98Hz
+	scale 1
+	# relative to primary display (2560 - 2880 / 2 due to 2x scaling)
+	position -560 -1440
+}
