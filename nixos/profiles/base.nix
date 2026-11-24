@@ -23,5 +23,8 @@
 
   programs.nix-ld.enable = true;
 
+  # Keep boot messages visible when the login prompt appears.
+  systemd.services."getty@tty1".serviceConfig.TTYVTDisallocate = false;
+
   time.timeZone = lib.mkDefault "Europe/Tallinn";
 }
