@@ -107,3 +107,6 @@ exec mako
 exec wlsunset -l 59.4 -L 24.7
 # Screen off after 10 min, lock after 11, suspend after 15.
 exec swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' timeout 660 'swaylock -f' timeout 900 'systemctl suspend' before-sleep 'swaylock -f'
+# Gamepad input doesn't count as activity, so don't idle while a Steam game is focused.
+for_window [class="^steam_app_.*"] inhibit_idle focus
+for_window [app_id="^steam_app_.*"] inhibit_idle focus
