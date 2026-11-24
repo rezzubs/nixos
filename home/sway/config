@@ -18,6 +18,8 @@ input type:touchpad {
     tap disabled
     natural_scroll enabled
     dwt enabled
+    # https://wayland.freedesktop.org/libinput/doc/latest/clickpad-softbuttons.html#clickfinger-behavior
+    click_method clickfinger
 }
 
 # Host-specific monitor setup, see custom.sway.outputsFile
